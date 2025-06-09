@@ -10,9 +10,7 @@ pub struct Calculator {
 impl Calculator {
     /// Create a new calculator instance
     pub fn new(name: impl Into<String>) -> Self {
-        Self {
-            name: name.into(),
-        }
+        Self { name: name.into() }
     }
 
     /// Add two numbers

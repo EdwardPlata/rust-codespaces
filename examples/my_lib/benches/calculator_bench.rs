@@ -18,24 +18,21 @@ fn bench_calculator_operations(c: &mut Criterion) {
 }
 
 fn bench_factorial(c: &mut Criterion) {
-    c.bench_function("factorial_10", |b| {
-        b.iter(|| factorial(black_box(10)))
-    });
+    c.bench_function("factorial_10", |b| b.iter(|| factorial(black_box(10))));
 
-    c.bench_function("factorial_20", |b| {
-        b.iter(|| factorial(black_box(20)))
-    });
+    c.bench_function("factorial_20", |b| b.iter(|| factorial(black_box(20))));
 }
 
 fn bench_fibonacci(c: &mut Criterion) {
-    c.bench_function("fibonacci_10", |b| {
-        b.iter(|| fibonacci(black_box(10)))
-    });
+    c.bench_function("fibonacci_10", |b| b.iter(|| fibonacci(black_box(10))));
 
-    c.bench_function("fibonacci_20", |b| {
-        b.iter(|| fibonacci(black_box(20)))
-    });
+    c.bench_function("fibonacci_20", |b| b.iter(|| fibonacci(black_box(20))));
 }
 
-criterion_group!(benches, bench_calculator_operations, bench_factorial, bench_fibonacci);
+criterion_group!(
+    benches,
+    bench_calculator_operations,
+    bench_factorial,
+    bench_fibonacci
+);
 criterion_main!(benches);

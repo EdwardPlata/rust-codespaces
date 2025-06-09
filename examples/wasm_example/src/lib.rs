@@ -1,5 +1,4 @@
 use wasm_bindgen::prelude::*;
-use web_sys::console;
 
 // Import the `console.log` function from the browser
 #[wasm_bindgen]

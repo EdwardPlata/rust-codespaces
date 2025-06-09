@@ -1,4 +1,5 @@
 [workspace]
+resolver = "2"
 members = [
     "examples/hello_world",
     "examples/my_lib",

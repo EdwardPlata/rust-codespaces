@@ -1,6 +1,6 @@
 # Makefile for Rust development workflows
 
-.PHONY: help build test clean fmt clippy run install-tools bench doc
+.PHONY: help build test clean fmt clippy run install-tools bench doc check-ci setup-hooks
 
 # Default target
 help:
@@ -23,6 +23,8 @@ help:
 	@echo "  install-tools - Install additional development tools"
 	@echo "  audit        - Security audit of dependencies"
 	@echo "  outdated     - Check for outdated dependencies"
+	@echo "  check-ci     - Run CI checks locally"
+	@echo "  setup-hooks  - Install Git pre-commit hooks"
 
 # Build all workspace members
 build:
@@ -113,3 +115,13 @@ check-all: fmt clippy test
 # Development workflow
 dev: fmt clippy test
 	@echo "🚀 Ready for development!"
+
+# CI testing
+check-ci:
+	@echo "🔧 Running CI checks locally..."
+	./test_ci.sh
+
+# Setup Git hooks
+setup-hooks:
+	@echo "🔧 Setting up Git hooks..."
+	./setup-hooks.sh
