@@ -8,7 +8,6 @@ crate-type = ["cdylib"]
 
 [dependencies]
 wasm-bindgen = { workspace = true }
-web-sys = { workspace = true }
 js-sys = { workspace = true }
 serde = { workspace = true }
 serde-wasm-bindgen = "0.6"
