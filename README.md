@@ -1,70 +1,219 @@
-# Codespaces Base Starter
+# 🦀 Rust Development Codespaces
 
-This project is a generic starter for developers to use in Codespaces that includes basic system tools and extensions.
+A comprehensive, production-ready Rust development environment for GitHub Codespaces with all the tools you need to build amazing Rust applications.
 
-## What's Included
+## 🚀 What's Included
 
-This is an unopinionated, basic environment that should be ready to expand upon to build a day-to-day development envrionment. It comes with the following software choices:
+This environment comes pre-configured with everything you need for modern Rust development:
 
-### System Tools
+### 🦀 Rust Toolchain & Components
 
-- [curl/curl](https://github.com/curl/curl): the command line tool for transferring data over a metric boatload of protocols.
-- git: the Git SCM tool.
-- [gnupg2](https://gnupg.org/): a complete and free implementatiuon of the OpenPGP standard.
-- [stedolan/jq](https://github.com/stedolan/jq) - a command line JSON parser.
-- [sudo](https://www.sudo.ws/) - the superuser authority delegation tool.
-- [zsh](https://www.zsh.org/) - interactive terminal (alternative to `bash`).
-- [ohmyzsh/ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) - a delightful community driven framework for managing zsh config.
+- **Rust Stable Toolchain**: Latest stable Rust compiler and standard library
+- **rustfmt**: Code formatting tool
+- **Clippy**: Rust linter for catching common mistakes and improving code
+- **rust-analyzer**: Powerful language server for IDE features
+- **rust-src**: Rust source code for better IDE integration
+- **WASM target**: `wasm32-unknown-unknown` for WebAssembly development
 
-### VS Code Extensions
+### 🛠️ Development Tools
 
-- [Bracket Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2): An extension colors matching brackets appropraitely to enhance code readability.
-- [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker): Included for Node.js developers who work with Docker, but also to enable users to edit `.devcontainer/Dockerfile` with proper editing.
-- [GitHub Pull Requests and Issues](https://marketplace.visualstudio.com/items?itemName=github.vscode-pull-request-github): Integration with GitHub's Pull Requests and Issues features that significantly enhance the experience of working in a repo hosted on GitHub.
-- [IntelliCode](https://marketplace.visualstudio.com/items?itemName=visualstudioexptteam.vscodeintellicode): AI-assisted development for multiple langauges including JavaScript and TypeScript.
-- [Live Share](https://marketplace.visualstudio.com/items?itemName=ms-vsliveshare.vsliveshare): collaborative, multi-user remote editing from directly within the editor.
-- [vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons): An enhancement to the editor UI that gives more visual indicators in the explorer.
+- **cargo-watch**: Automatically run commands when files change
+- **cargo-edit**: Add, remove, and upgrade dependencies from the command line
+- **cargo-tree**: Display dependency trees
+- **cargo-audit**: Security vulnerability scanner
+- **cargo-outdated**: Check for outdated dependencies
+- **cargo-expand**: Show macro-expanded code
+- **cargo-bloat**: Find what takes most space in your executable
+- **cargo-deps**: Build dependency graphs
+- **cargo-generate**: Generate projects from templates
 
-### Operating System
+### 🌐 Web & WASM Development
 
-- [Ubuntu 18.04](https://releases.ubuntu.com/18.04.4/): The 18.04 LTS version of Ubuntu.
+- **wasm-pack**: Build Rust-generated WebAssembly
+- **trunk**: WASM web application bundler
+- **Node.js**: For web development and tooling
 
-## Usage
+### 🗄️ Database Tools
 
-### In VS Codespaces
+- **sqlx-cli**: SQLx command-line tool for database migrations
+- **diesel_cli**: Diesel ORM command-line tool (PostgreSQL & SQLite support)
 
-#### Inital Creation
+### 📊 Performance & Debugging
 
-For usage in VS Codespaces, you're going to want to head over to [online.visualstudio.com](https://online.visualstudio.com) and sign up for VS Codespaces (that process is outside the scope of these instructions). Once you've got an account and are signed in to [online.visualstudio.com](https://online.visualstudio.com), you're going to take the following steps:
+- **tokio-console**: Debugger for async Rust programs
+- **flamegraph**: Generate flame graphs for performance analysis
+- **hyperfine**: Command-line benchmarking tool
+- **LLDB**: Native debugger integration
 
-- Ensure you're on the `/environments` page at [online.visualstudio.com/environments](https://online.visualstudio.comenvironments)
-- In the top right corner, there'll be a "Create environment" button. Click this button, which will open up a panel from the right side of the screen. Fill in the details of this panel:
-  - **Environment Name:** This will be the visible name of your environment within Codespaces. The value here doesn't particularly matter - I'm going to use `tinycloud`.
-  - **Git Repository:** This is going to be either the URL you'd `git clone` the repo from or the GitHub `<org OR user>/<repo>` shorthand. For this repo, the easier value would be `codespaces-examples/base`.
-  - **Instance Type:** For this, you're going to choose your plan - in my case, I'm just going to go with the `Standard (Linux)` plan. For most use cases of this starter, `Basic (Linux)` should suffice. You can also change your plan at any time, as your workload demands.
-  - **Suspend idle environment after:** This is the period of time you want your environment to automatically suspend after you've stopped actively using it. I generally chose 5 minutes and have not had any problems to date.
-  - **Dotfiles (optional):** These are entirely optional, and are available for advanced users.
-    - **Dotfiles Repository:** Using the `git clone` URL or the GitHub `<org OR user>/<repo>` syntax, you can define the repo to pull your dotfiles from. For examples, see [jessfraz/dotfiles](https://github.com/jessfraz/dotfiles) or [fnichol/dotfiles](https://github.com/fnichol/dotfiles).
-    - **Dotfiles Install Command:** The name of the file or the command to run to install your dotfiles.
-    - **Dotfiles Target Path:** The path where your dotfiles should be installed.
-  - Once you've filled out all of those (and resolved any errors in the form validation, if any occurred), you'll be able to click "Create" at the bottom of the panel and your environment will start creating.
+### 🔧 System Tools
 
-#### Connecting to your Environment
+- **ripgrep**: Ultra-fast text search
+- **fd-find**: Fast and user-friendly alternative to find
+- **bat**: Syntax-highlighted file viewer
+- **exa**: Modern replacement for ls
+- **starship**: Customizable shell prompt
+- **Git**: Version control
+- **GitHub CLI**: GitHub integration
+- **Docker**: Container support
+- **CMake & Clang**: For C/C++ interop
 
-Once you've completed the Creation steps, your environment will be usable from Codespaces until you delete it. You can access it by going to [online.visualstudio.com](https://online.visualstudio.com) and selecting the vertical elipsis menu to connect to it from the browser or launch it in VS Code / VS Code Insiders.
+### 🎨 VS Code Extensions
 
-When inside of the environment you can change envrionments themselves from the command pallete with the `Codespaces: Connect`.
+- **rust-analyzer**: Rust language server
+- **CodeLLDB**: Native debugger
+- **crates**: Manage Rust dependencies
+- **Even Better TOML**: Enhanced TOML support
+- **Rust Syntax**: Additional syntax highlighting
+- **Dependi**: Dependency management
+- **GitHub Pull Requests**: GitHub integration
+- **Docker**: Container development
+- **Live Share**: Collaborative editing
+- **IntelliCode**: AI-assisted development
 
-> **Note:** See the [VS Online in the Browser](https://docs.microsoft.com/en-us/visualstudio/online/quickstarts/browser) quickstart for more information.
+## 📁 Example Projects
 
-Additionally, if you've installedthe [Visual Studio Codespaces](https://marketplace.visualstudio.com/items?itemName=ms-vsonline.vsonline) extension in VS Code locally, you'll be able to directly connect from VS Code itself.
+The environment comes with pre-configured example projects in `/workspace/examples/`:
 
-> **Note:** See the [VS Online in VS Code](https://docs.microsoft.com/en-us/visualstudio/online/quickstarts/vscode) quickstart for more information.
+- **hello_world**: Simple binary application
+- **my_lib**: Library crate with tests
+- **rust_workspace**: Multi-crate workspace example
 
-#### Working
+## 🚀 Quick Start
 
-Now that you're set up and connected, you should be able to work within your Codespaces environment.
+### 1. Create Your Codespace
 
-## Contributing
+Click the "Use this template" button or create a new Codespace from this repository.
 
-Contributions are welcome. Please refrain from opinionated additions like linters. However, adding package managers and other DX improvements that are additive like `yarn` are welcome. Contributors must follow the [Code of Conduct](./CODE_OF_CONDUCT.md).
+### 2. Wait for Setup
+
+The environment will automatically install all Rust tools and dependencies. This takes a few minutes on first setup.
+
+### 3. Start Coding!
+
+```bash
+# Navigate to examples
+cd /workspace/examples/hello_world
+
+# Run the hello world example
+cargo run
+
+# Run tests
+cargo test
+
+# Check your code
+cargo clippy
+
+# Format your code
+cargo fmt
+
+# Start developing with auto-reload
+cargo watch -x run
+```
+
+### 4. Create a New Project
+
+```bash
+# Create a new binary project
+cargo new my_awesome_project
+
+# Or create from a template
+cargo generate --git https://github.com/rust-starter/rust-starter
+
+# Create a new library
+cargo new my_library --lib
+```
+
+## 🔧 Advanced Usage
+
+### WebAssembly Development
+
+```bash
+# Create a new WASM project
+cargo new --lib my-wasm-project
+cd my-wasm-project
+
+# Add WASM dependencies to Cargo.toml
+# Then build for WASM
+wasm-pack build --target web
+
+# Or use trunk for full web apps
+trunk serve
+```
+
+### Database Development
+
+```bash
+# SQLx setup
+cargo install sqlx-cli
+sqlx database create
+sqlx migrate add initial
+
+# Diesel setup
+diesel setup
+diesel migration generate create_users
+```
+
+### Performance Analysis
+
+```bash
+# Benchmark your code
+cargo install criterion
+# Add criterion to your Cargo.toml, then:
+cargo bench
+
+# Profile with flamegraph
+cargo flamegraph --bin my-binary
+
+# Benchmark commands
+hyperfine 'cargo run --release'
+```
+
+## 🎯 Debugging
+
+The environment includes full debugging support:
+
+1. Set breakpoints in VS Code
+2. Press F5 or use "Run and Debug"
+3. Use the integrated LLDB debugger
+4. Debug async code with tokio-console
+
+## 🔍 Code Quality
+
+Built-in code quality tools:
+
+```bash
+# Lint your code
+cargo clippy
+
+# Format your code
+cargo fmt
+
+# Security audit
+cargo audit
+
+# Check for outdated dependencies
+cargo outdated
+
+# Analyze binary size
+cargo bloat --release
+```
+
+## 🌐 Port Forwarding
+
+The following ports are pre-configured for forwarding:
+
+- **3000**: Development servers (Trunk, etc.)
+- **8080**: Web servers
+- **8000**: HTTP servers
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit issues and enhancement requests.
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+**Happy Rust coding! 🦀✨**
