@@ -18,20 +18,16 @@ pub fn greet(name: &str) {
     console_log!("Hello, {}! Greetings from Rust and WebAssembly! 🦀", name);
 }
 
-// Export a function that adds two numbers
+// Export functions from shared crate
 #[wasm_bindgen]
 pub fn add(a: i32, b: i32) -> i32 {
-    a + b
+    shared::add(a as u64, b as u64) as i32
 }
 
-// Export a function that calculates factorial
+// Export factorial function from shared crate
 #[wasm_bindgen]
 pub fn factorial(n: i32) -> i32 {
-    if n <= 1 {
-        1
-    } else {
-        n * factorial(n - 1)
-    }
+    shared::factorial(n as u64) as i32
 }
 
 // More complex example: working with arrays
@@ -40,10 +36,10 @@ pub fn sum_array(numbers: &[i32]) -> i32 {
     numbers.iter().sum()
 }
 
-// Working with strings
+// Working with strings - use shared reverse_string
 #[wasm_bindgen]
 pub fn reverse_string(input: &str) -> String {
-    input.chars().rev().collect()
+    shared::reverse_string(input)
 }
 
 // Example of using web APIs

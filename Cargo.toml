@@ -1,6 +1,10 @@
+# Rust Template Workspace Configuration
+# Customize this file for your project needs
+
 [workspace]
 resolver = "2"
 members = [
+    "shared",
     "examples/hello_world",
     "examples/my_lib",
     "examples/web_server",
@@ -8,50 +12,42 @@ members = [
     "examples/wasm_example",
 ]
 
-[workspace.dependencies]
-# Async runtime
-tokio = { version = "1.0", features = ["full"] }
+# Optional: Add your main project metadata here
+# [package]
+# name = "your-project-name"
+# version = "0.1.0"
+# authors = ["Your Name <your.email@example.com>"]
+# description = "Your project description"
+# license = "MIT OR Apache-2.0"
+# repository = "https://github.com/yourusername/your-repo"
 
-# Serialization
+[workspace.dependencies]
+# Core dependencies
+tokio = { version = "1.0", features = ["full"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Time utilities
+chrono = { version = "0.4", features = ["serde"] }
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# CLI framework
+clap = { version = "4.0", features = ["derive"] }
+
+# Testing
+criterion = { version = "0.5", features = ["html_reports"] }
 
 # Web framework
 axum = "0.7"
 tower = "0.4"
 tower-http = { version = "0.5", features = ["cors", "trace"] }
 
-# Database
-sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "postgres", "sqlite", "chrono", "uuid"] }
-
-# Error handling
-anyhow = "1.0"
-thiserror = "1.0"
-
-# Logging
-tracing = "0.1"
-tracing-subscriber = { version = "0.3", features = ["env-filter"] }
-
-# CLI
-clap = { version = "4.0", features = ["derive"] }
-
-# Testing
-criterion = { version = "0.5", features = ["html_reports"] }
-
-# WASM
+# WebAssembly
 wasm-bindgen = "0.2"
-web-sys = "0.3"
 js-sys = "0.3"
-serde-wasm-bindgen = "0.6"
-
-# UUID
-uuid = { version = "1.0", features = ["v4", "serde"] }
-
-# Time
-chrono = { version = "0.4", features = ["serde"] }
-
-# Configuration
-config = "0.14"
-
-# HTTP client
-reqwest = { version = "0.11", features = ["json"] }
+web-sys = "0.3"

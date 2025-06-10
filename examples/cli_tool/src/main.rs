@@ -1,5 +1,5 @@
 use clap::{Parser, Subcommand};
-use serde::{Deserialize, Serialize};
+use shared::{create_greeting, factorial, Message};
 use std::fs;
 
 #[derive(Parser)]
@@ -52,23 +52,17 @@ enum FileCommands {
     },
 }
 
-#[derive(Serialize, Deserialize)]
-struct SampleData {
-    message: String,
-    timestamp: String,
-    version: String,
-}
-
 fn main() -> anyhow::Result<()> {
     let cli = Cli::parse();
 
     match cli.command {
         Commands::Greet { name, count } => {
+            let greeting = create_greeting(&name);
             for i in 1..=count {
                 if count > 1 {
-                    println!("{}. Hello, {}! 👋", i, name);
+                    println!("{}. {}", i, greeting);
                 } else {
-                    println!("Hello, {}! 👋", name);
+                    println!("{}", greeting);
                 }
             }
         }
@@ -78,23 +72,26 @@ fn main() -> anyhow::Result<()> {
         }
         Commands::File { action } => match action {
             FileCommands::Create { path, content } => {
-                let data = SampleData {
-                    message: content.unwrap_or_else(|| "Hello from Rust CLI!".to_string()),
-                    timestamp: chrono::Utc::now().to_rfc3339(),
-                    version: "1.0.0".to_string(),
-                };
+                let message =
+                    Message::new(content.unwrap_or_else(|| "Hello from Rust CLI!".to_string()))
+                        .with_timestamp(chrono::Utc::now().to_rfc3339())
+                        .with_metadata("version".to_string(), "1.0.0".to_string());
 
-                let json = serde_json::to_string_pretty(&data)?;
+                let json = serde_json::to_string_pretty(&message)?;
                 fs::write(&path, json)?;
                 println!("✅ Created file: {}", path);
             }
             FileCommands::Read { path } => {
                 let content = fs::read_to_string(&path)?;
-                let data: SampleData = serde_json::from_str(&content)?;
+                let message: Message = serde_json::from_str(&content)?;
                 println!("📄 File content:");
-                println!("  Message: {}", data.message);
-                println!("  Timestamp: {}", data.timestamp);
-                println!("  Version: {}", data.version);
+                println!("  Content: {}", message.content);
+                if let Some(timestamp) = message.timestamp {
+                    println!("  Timestamp: {}", timestamp);
+                }
+                if let Some(metadata) = message.metadata {
+                    println!("  Metadata: {:?}", metadata);
+                }
             }
         },
     }
@@ -102,20 +99,12 @@ fn main() -> anyhow::Result<()> {
     Ok(())
 }
 
-fn factorial(n: u64) -> u64 {
-    if n <= 1 {
-        1
-    } else {
-        n * factorial(n - 1)
-    }
-}
-
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use shared::factorial;
 
     #[test]
-    fn test_factorial() {
+    fn test_factorial_from_shared() {
         assert_eq!(factorial(0), 1);
         assert_eq!(factorial(1), 1);
         assert_eq!(factorial(5), 120);

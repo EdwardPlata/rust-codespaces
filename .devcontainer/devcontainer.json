@@ -1,18 +1,24 @@
 {
     "name": "Rust Development Environment",
-    "image": "mcr.microsoft.com/devcontainers/rust:1-1-bullseye",
+    "image": "mcr.microsoft.com/devcontainers/rust:1-1-bookworm",
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2": {
             "installZsh": true,
             "configureZshAsDefaultShell": true,
             "installOhMyZsh": true,
-            "installOhMyZshConfig": true,
             "upgradePackages": true
         },
         "ghcr.io/devcontainers/features/github-cli:1": {},
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/devcontainers/features/node:1": {
-            "version": "lts"
+            "version": "lts",
+            "nodeGypDependencies": true,
+            "nvmInstallPath": "/usr/local/share/nvm"
+        },
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3.11",
+            "installTools": true,
+            "optimize": true
         }
     },
     "customizations": {
@@ -20,22 +26,18 @@
             "extensions": [
                 "rust-lang.rust-analyzer",
                 "vadimcn.vscode-lldb",
-                "serayuzgur.crates",
                 "tamasfe.even-better-toml",
-                "dustypomerleau.rust-syntax",
+                "serayuzgur.crates",
                 "fill-labs.dependi",
                 "github.vscode-pull-request-github",
-                "ms-azuretools.vscode-docker",
-                "ms-vsliveshare.vsliveshare",
-                "vscode-icons-team.vscode-icons",
-                "visualstudioexptteam.vscodeintellicode",
-                "cschleiden.vscode-github-actions",
-                "ms-vscode.test-adapter-converter",
-                "hbenl.vscode-test-explorer",
-                "ms-vscode-remote.remote-containers",
-                "ms-vscode.cmake-tools",
-                "twxs.cmake",
-                "ms-vscode.cpptools"
+                "ms-python.python",
+                "ms-python.pylint",
+                "ms-python.black-formatter",
+                "ms-python.isort",
+                "ms-toolsai.jupyter",
+                "bradlc.vscode-tailwindcss",
+                "esbenp.prettier-vscode",
+                "ms-vscode.vscode-typescript-next"
             ],
             "settings": {
                 "terminal.integrated.defaultProfile.linux": "zsh",
@@ -59,7 +61,8 @@
             }
         }
     },
-    "postCreateCommand": "bash .devcontainer/setup.sh",
+    "onCreateCommand": "cargo install cargo-watch cargo-edit cargo-nextest",
+    "postCreateCommand": "echo '🦀 Rust development environment ready!'",
     "remoteUser": "vscode",
     "forwardPorts": [3000, 8080, 8000],
     "portsAttributes": {

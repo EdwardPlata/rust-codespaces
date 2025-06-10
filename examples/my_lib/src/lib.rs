@@ -1,6 +1,9 @@
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
 
+// Re-export commonly used functions from shared crate
+pub use shared::{factorial, fibonacci};
+
 /// A simple calculator library demonstrating Rust best practices
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Calculator {
@@ -39,23 +42,6 @@ impl Calculator {
     /// Get the calculator's name
     pub fn name(&self) -> &str {
         &self.name
-    }
-}
-
-/// Calculate the factorial of a number
-pub fn factorial(n: u64) -> u64 {
-    match n {
-        0 | 1 => 1,
-        _ => n * factorial(n - 1),
-    }
-}
-
-/// Calculate the fibonacci number at position n
-pub fn fibonacci(n: u64) -> u64 {
-    match n {
-        0 => 0,
-        1 => 1,
-        _ => fibonacci(n - 1) + fibonacci(n - 2),
     }
 }
 

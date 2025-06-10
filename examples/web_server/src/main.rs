@@ -5,24 +5,12 @@ use axum::{
     routing::{get, post},
     Router,
 };
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
+use shared::{Message, UserInfo};
 use std::collections::HashMap;
 use tower::ServiceBuilder;
 use tower_http::{cors::CorsLayer, trace::TraceLayer};
 use tracing::{info, Level};
-
-#[derive(Serialize, Deserialize)]
-struct HealthResponse {
-    status: String,
-    message: String,
-}
-
-#[derive(Serialize, Deserialize)]
-struct UserInfo {
-    name: String,
-    age: u32,
-    email: String,
-}
 
 #[derive(Deserialize)]
 struct QueryParams {
@@ -65,26 +53,23 @@ async fn root() -> &'static str {
     "🦀 Welcome to the Rust Web Server! Try /health, /users/123, or /search?name=rust"
 }
 
-async fn health_check() -> Json<HealthResponse> {
-    Json(HealthResponse {
-        status: "healthy".to_string(),
-        message: "🦀 Rust web server is running!".to_string(),
-    })
+async fn health_check() -> Json<Message> {
+    Json(
+        Message::new("🦀 Rust web server is running!")
+            .with_timestamp(chrono::Utc::now().to_rfc3339())
+            .with_metadata("status".to_string(), "healthy".to_string()),
+    )
 }
 
 async fn get_user(Path(user_id): Path<u32>) -> Result<Json<UserInfo>, StatusCode> {
     // In a real app, you'd fetch from a database
     match user_id {
-        1 => Ok(Json(UserInfo {
-            name: "Alice".to_string(),
-            age: 30,
-            email: "alice@example.com".to_string(),
-        })),
-        2 => Ok(Json(UserInfo {
-            name: "Bob".to_string(),
-            age: 25,
-            email: "bob@example.com".to_string(),
-        })),
+        1 => Ok(Json(
+            UserInfo::new("Alice").with_email("alice@example.com".to_string()),
+        )),
+        2 => Ok(Json(
+            UserInfo::new("Bob").with_email("bob@example.com".to_string()),
+        )),
         _ => Err(StatusCode::NOT_FOUND),
     }
 }

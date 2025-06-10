@@ -1,10 +1,25 @@
-# 🦀 Rust Development Codespaces
+# 🦀 Rust Development Template
 
-A comprehensive, production-ready Rust development environment for GitHub Codespaces with all the tools you need to build amazing Rust applications.
+A production-ready Rust development template with **GitHub Codespaces** support, complete examples, and modern tooling.
 
-## 🚀 What's Included
+## 🚀 Quick Start
 
-This environment comes pre-configured with everything you need for modern Rust development:
+### Option 1: GitHub Codespaces (Recommended)
+
+1. Click **"Use this template"** → **"Create a new repository"**
+2. Open your new repository
+3. Click **"Code"** → **"Create codespace on main"**
+4. Wait for the environment to initialize (2-3 minutes)
+5. Start coding! 🎉
+
+### Option 2: Local Development
+
+```bash
+git clone <your-repo-url>
+cd <your-repo-name>
+cargo build
+cargo test
+```
 
 ### 🦀 Rust Toolchain & Components
 
@@ -70,13 +85,45 @@ This environment comes pre-configured with everything you need for modern Rust d
 - **Live Share**: Collaborative editing
 - **IntelliCode**: AI-assisted development
 
-## 📁 Example Projects
+## 🏗️ Project Architecture
 
-The environment comes with pre-configured example projects in `/workspace/examples/`:
+This template demonstrates modern Rust project organization with a **workspace structure** and **shared utilities**:
 
-- **hello_world**: Simple binary application
-- **my_lib**: Library crate with tests
-- **rust_workspace**: Multi-crate workspace example
+### 📦 Workspace Structure
+```
+├── shared/              # Shared utilities crate
+│   ├── src/
+│   │   ├── lib.rs      # Common functions and types
+│   │   ├── math.rs     # Mathematical utilities
+│   │   ├── text.rs     # Text processing utilities
+│   │   └── types.rs    # Shared data structures
+│   └── Cargo.toml
+├── examples/
+│   ├── hello_world/    # Simple binary application
+│   ├── cli_tool/       # Command-line tool using clap
+│   ├── my_lib/         # Library crate with comprehensive tests
+│   ├── wasm_example/   # WebAssembly library
+│   └── web_server/     # Axum-based web server
+└── Cargo.toml          # Workspace configuration
+```
+
+### 🔗 Code Reuse & Best Practices
+
+The template showcases **professional Rust development patterns**:
+
+- **Shared utilities crate**: Common functions (`factorial`, `fibonacci`, `add`, etc.) used across examples
+- **Shared types**: `Message` and `UserInfo` structs for consistent data modeling
+- **Workspace dependencies**: Centralized dependency management
+- **Modular design**: Well-organized code with clear separation of concerns
+- **Comprehensive testing**: Unit tests, doc tests, and integration examples
+
+### 📁 Example Projects
+
+- **hello_world**: Basic binary with async operations and structured output
+- **cli_tool**: Feature-rich CLI using `clap` with file operations and shared utilities
+- **my_lib**: Production-ready library with benchmarks, comprehensive tests, and calculator functionality
+- **wasm_example**: WebAssembly library demonstrating browser integration
+- **web_server**: RESTful API server using `axum` with JSON endpoints and shared data types
 
 ## 🚀 Quick Start
 
@@ -88,39 +135,42 @@ Click the "Use this template" button or create a new Codespace from this reposit
 
 The environment will automatically install all Rust tools and dependencies. This takes a few minutes on first setup.
 
-### 3. Start Coding!
+### 3. Explore the Examples!
 
 ```bash
-# Navigate to examples
-cd /workspace/examples/hello_world
+# Try the improved CLI tool with shared utilities
+cd examples/cli_tool
+cargo run -- greet --name "Rustacean" --count 3
+cargo run -- factorial 10
+cargo run -- file create hello.json --content "Hello from Rust!"
 
-# Run the hello world example
-cargo run
-
-# Run tests
+# Test the library with benchmarks
+cd ../my_lib
 cargo test
+cargo bench
 
-# Check your code
-cargo clippy
+# Run the web server
+cd ../web_server
+cargo run
+# Visit http://localhost:3000 in another terminal or browser
 
-# Format your code
-cargo fmt
-
-# Start developing with auto-reload
-cargo watch -x run
+# Build WebAssembly example
+cd ../wasm_example
+wasm-pack build --target web
 ```
 
-### 4. Create a New Project
+### 4. Start Your Own Project
+
+The template demonstrates workspace organization - create your own crate:
 
 ```bash
-# Create a new binary project
-cargo new my_awesome_project
+# Add a new binary crate to the workspace
+cargo new examples/my_new_project
 
-# Or create from a template
-cargo generate --git https://github.com/rust-starter/rust-starter
+# Add a new library crate
+cargo new shared_utils --lib
 
-# Create a new library
-cargo new my_library --lib
+# Add to Cargo.toml workspace members
 ```
 
 ## 🔧 Advanced Usage

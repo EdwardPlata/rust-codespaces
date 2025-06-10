@@ -2,13 +2,18 @@
 /target/
 **/*.rs.bk
 *.pdb
+Cargo.lock  # Remove this line if building a library
 
-# IDE
-.vscode/
+# IDE (keep .vscode for template configurations)
 .idea/
 
 # OS
 .DS_Store
+Thumbs.db
+
+# Template files (remove after customizing)
+TEMPLATE_USAGE.md
+STATUS.md
 .DS_Store?
 ._*
 .Spotlight-V100

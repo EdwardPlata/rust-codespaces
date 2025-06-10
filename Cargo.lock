@@ -320,7 +320,7 @@ dependencies = [
  "clap",
  "serde",
  "serde_json",
- "tokio",
+ "shared",
 ]
 
 [[package]]
@@ -722,6 +722,7 @@ dependencies = [
  "criterion",
  "serde",
  "serde_json",
+ "shared",
 ]
 
 [[package]]
@@ -1044,6 +1045,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "shared"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "serde",
+]
+
+[[package]]
 name = "shlex"
 version = "1.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1363,6 +1372,7 @@ dependencies = [
  "js-sys",
  "serde",
  "serde-wasm-bindgen",
+ "shared",
  "wasm-bindgen",
  "web-sys",
 ]
@@ -1383,8 +1393,10 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "axum",
+ "chrono",
  "serde",
  "serde_json",
+ "shared",
  "tokio",
  "tower 0.4.13",
  "tower-http",
