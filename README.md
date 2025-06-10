@@ -90,6 +90,7 @@ cargo test
 This template demonstrates modern Rust project organization with a **workspace structure** and **shared utilities**:
 
 ### 📦 Workspace Structure
+
 ```
 ├── shared/              # Shared utilities crate
 │   ├── src/
