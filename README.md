@@ -90,7 +90,6 @@ cargo test
 This template demonstrates modern Rust project organization with a **workspace structure** and **shared utilities**:
 
 ### 📦 Workspace Structure
-
 ```
 ├── shared/              # Shared utilities crate
 │   ├── src/
@@ -136,42 +135,39 @@ Click the "Use this template" button or create a new Codespace from this reposit
 
 The environment will automatically install all Rust tools and dependencies. This takes a few minutes on first setup.
 
-### 3. Explore the Examples!
+### 3. Start Coding!
 
 ```bash
-# Try the improved CLI tool with shared utilities
-cd examples/cli_tool
-cargo run -- greet --name "Rustacean" --count 3
-cargo run -- factorial 10
-cargo run -- file create hello.json --content "Hello from Rust!"
+# Navigate to examples
+cd /workspace/examples/hello_world
 
-# Test the library with benchmarks
-cd ../my_lib
-cargo test
-cargo bench
-
-# Run the web server
-cd ../web_server
+# Run the hello world example
 cargo run
-# Visit http://localhost:3000 in another terminal or browser
 
-# Build WebAssembly example
-cd ../wasm_example
-wasm-pack build --target web
+# Run tests
+cargo test
+
+# Check your code
+cargo clippy
+
+# Format your code
+cargo fmt
+
+# Start developing with auto-reload
+cargo watch -x run
 ```
 
-### 4. Start Your Own Project
-
-The template demonstrates workspace organization - create your own crate:
+### 4. Create a New Project
 
 ```bash
-# Add a new binary crate to the workspace
-cargo new examples/my_new_project
+# Create a new binary project
+cargo new my_awesome_project
 
-# Add a new library crate
-cargo new shared_utils --lib
+# Or create from a template
+cargo generate --git https://github.com/rust-starter/rust-starter
 
-# Add to Cargo.toml workspace members
+# Create a new library
+cargo new my_library --lib
 ```
 
 ## 🔧 Advanced Usage

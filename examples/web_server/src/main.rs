@@ -5,8 +5,8 @@ use axum::{
     routing::{get, post},
     Router,
 };
-use serde::Deserialize;
 use shared::{Message, UserInfo};
+use serde::Deserialize;
 use std::collections::HashMap;
 use tower::ServiceBuilder;
 use tower_http::{cors::CorsLayer, trace::TraceLayer};
@@ -54,22 +54,18 @@ async fn root() -> &'static str {
 }
 
 async fn health_check() -> Json<Message> {
-    Json(
-        Message::new("🦀 Rust web server is running!")
-            .with_timestamp(chrono::Utc::now().to_rfc3339())
-            .with_metadata("status".to_string(), "healthy".to_string()),
-    )
+    Json(Message::new("🦀 Rust web server is running!")
+        .with_timestamp(chrono::Utc::now().to_rfc3339())
+        .with_metadata("status".to_string(), "healthy".to_string()))
 }
 
 async fn get_user(Path(user_id): Path<u32>) -> Result<Json<UserInfo>, StatusCode> {
     // In a real app, you'd fetch from a database
     match user_id {
-        1 => Ok(Json(
-            UserInfo::new("Alice").with_email("alice@example.com".to_string()),
-        )),
-        2 => Ok(Json(
-            UserInfo::new("Bob").with_email("bob@example.com".to_string()),
-        )),
+        1 => Ok(Json(UserInfo::new("Alice")
+            .with_email("alice@example.com".to_string()))),
+        2 => Ok(Json(UserInfo::new("Bob")
+            .with_email("bob@example.com".to_string()))),
         _ => Err(StatusCode::NOT_FOUND),
     }
 }
