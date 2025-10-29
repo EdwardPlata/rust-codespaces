@@ -34,10 +34,10 @@ jobs:
 
       - name: Check workspace structure
         run: |
-          echo "📁 Workspace structure:"
+          echo "Workspace structure:"
           find . -name "Cargo.toml" -type f
           echo ""
-          echo "📋 Root Cargo.toml:"
+          echo "Root Cargo.toml:"
           head -20 Cargo.toml
 
       - name: Check Cargo.toml syntax
