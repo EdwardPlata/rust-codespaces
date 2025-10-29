@@ -10,7 +10,7 @@ BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
-echo -e "${GREEN}🦀 Rust Template Customization${NC}"
+echo -e "${GREEN}Rust Template Customization${NC}"
 echo -e "${BLUE}This script will help you customize your new Rust project${NC}"
 echo
 
@@ -101,11 +101,11 @@ if [ -f README-TEMPLATE.md ]; then
 fi
 
 echo
-echo -e "${GREEN}✅ Template customization complete!${NC}"
+echo -e "${GREEN}Template customization complete!${NC}"
 echo -e "${BLUE}Next steps:${NC}"
 echo "1. Update README.md with your project description"
 echo "2. Modify Cargo.toml metadata (author, description, etc.)"
 echo "3. Test your setup: cargo build && cargo test"
 echo "4. Remove this script: rm customize-template.sh"
 echo
-echo -e "${GREEN}🎉 Happy coding with Rust!${NC}"
+echo -e "${GREEN}Happy coding with Rust!${NC}"
